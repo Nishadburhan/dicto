@@ -83,6 +83,7 @@ app.get('/', (req, res) => {
 });
 
 // Init Server
-app.listen(port, "192.168.0.5",() => {
+// app.listen(port, "192.168.0.5",() => {
+app.listen(port, () => {
     console.log(`Server started at ${port}`);
 });

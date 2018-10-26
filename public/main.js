@@ -1266,7 +1266,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var AuthService = /** @class */ (function () {
     function AuthService(http) {
         this.http = http;
-        this.baseUrl = 'http://192.168.0.5:8000/';
+        // baseUrl: string = 'http://192.168.0.5:8000/';
+        this.baseUrl = 'http://localhost:8000/';
     }
     AuthService.prototype.registerUser = function (user) {
         var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
@@ -1355,7 +1356,8 @@ var DiscussonService = /** @class */ (function () {
     function DiscussonService(http, auth) {
         this.http = http;
         this.auth = auth;
-        this.baseUrl = 'http://192.168.0.5:8000/';
+        // baseUrl: string = 'http://192.168.0.5:8000/';
+        this.baseUrl = 'http://localhost:8000/';
     }
     DiscussonService.prototype.addNewSubject = function (subject) {
         this.auth.loadToken();
@@ -1416,7 +1418,8 @@ var ManageService = /** @class */ (function () {
     function ManageService(http, auth) {
         this.http = http;
         this.auth = auth;
-        this.baseUrl = 'http://192.168.0.5:8000/';
+        // baseUrl: string = 'http://192.168.0.5:8000/';
+        this.baseUrl = 'http://localhost:8000/';
     }
     ManageService.prototype.addNewWord = function (word) {
         this.auth.loadToken();
