@@ -34,3 +34,6 @@ module.exports.findByWord=function(word, callback) {
 module.exports.getAllWords= function({}, callback) {
     Word.find({}, callback);
 }
+module.exports.addSuggestedWord= function(SuggestedWord, callback) {
+    SuggestedWord.save(null, callback);
+}

@@ -4,29 +4,30 @@ const passport = require('passport');
 const config = require('../config/database');
 const jwt = require('jsonwebtoken');
 const Word = require('../models/word');
+const Suggestion = require('../models/suggestions');
 
 router.get('/manage', (req, res, nex) => {
-    res.json({name:"Hello"});
+    res.json({ name: "Hello" });
 });
 router.post('/manage/getword', (req, res, next) => {
-    let word=new Word({
-        word:req.body.word
+    let word = new Word({
+        word: req.body.word
     });
     // console.log(word);
-    
+
     Word.findByWord(word, (err, word) => {
-        if(err) throw err;
-        if(!word) {
-            res.json({success:false, msg:'Failed to find the word'});
+        if (err) throw err;
+        if (!word) {
+            res.json({ success: false, msg: 'Failed to find the word' });
         } else {
             res.json({
-                success:true,
-                tags:word.tags
-    
+                success: true,
+                tags: word.tags
+
             });
         }
 
-        
+
         // if(err) {
         // }else{
         //     // res.json({success:true, msg:'Successfully found the word'});
@@ -38,13 +39,13 @@ router.post('/manage/getword', (req, res, next) => {
 router.post('/manage/words', (req, res, next) => {
     // locationbar
     let newWord = new Word({
-        word:req.body.word,
-        tags:req.body.tags
+        word: req.body.word,
+        tags: req.body.tags
     });
     // console.log(newWord);console.log('end');return;
-    
+
     Word.addNewWord(newWord, (err, word) => {
-        if(err) {
+        if (err) {
             res.json({ success: false, msg: 'Failed to add new word' });
         } else {
             res.json({ success: true, msg: 'New word added' });
@@ -52,15 +53,31 @@ router.post('/manage/words', (req, res, next) => {
     });
 });
 
+
 router.get('/manage/getwords', (req, res, next) => {
     Word.getAllWords({}, (err, words) => {
-        if(err) throw err;
-        if(err) {
-            res.json({success:false, msg:'Failed get data'});
+        if (err) throw err;
+        if (err) {
+            res.json({ success: false, msg: 'Failed get data' });
         } else {
             res.json(words);
         }
     })
-})
+});
+
+router.post('/manage/addnewsuggestedword', (req, res) => {
+    let SuggestedWord = new Word({
+        word: req.body.word,
+        tags: req.body.tags
+    });
+    Word.addSuggestedWord(SuggestedWord, (err, addedWord) => {
+        if (err) throw err;
+        if (err) {
+            res.json({ success: false, msg: 'Failed add new word' });
+        } else {
+            res.json({ success: true, msg: 'New word added' });
+        }
+    });
+});
 
 module.exports = router;

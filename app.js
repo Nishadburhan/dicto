@@ -54,6 +54,8 @@ const app = express();
 // Routes
 const users = require('./routes/users');
 const words = require('./routes/words');
+const suggestions = require('./routes/suggestions');
+const discussion = require('./routes/discussion');
 // Port Number
 
 // CORS Middleware
@@ -73,12 +75,14 @@ require('./config/passport')(passport)
 
 app.use('/users', users);
 app.use('/api', words);
+app.use('/api', suggestions);
+app.use('/api', discussion);
 // Index route
 app.get('/', (req, res) => {
     res.send('Invalid Endpoint!');
 });
 
 // Init Server
-app.listen(port, () => {
+app.listen(port, "192.168.0.5",() => {
     console.log(`Server started at ${port}`);
 });
