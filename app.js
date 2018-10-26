@@ -66,6 +66,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Body Parser Middleware
 app.use(bodyParser.json());
+// sim
 
 // Passport Middleware
 app.use(passport.initialize());
